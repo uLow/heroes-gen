@@ -16,7 +16,9 @@ if(isset($_GET['filters'])){
     
     foreach($filters as $filter){
         if(isset($filterList[$filter])){
-            $hero = $filterList[$filter]($hero);
+            // We can't do `$hero = $filterList[$filter]($hero);`
+            $activeFilter = $filterList[$filter];
+            $hero = $activeFilter($hero);
         }
     }
 }
