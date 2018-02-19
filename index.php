@@ -1,10 +1,16 @@
 <?php
+header('Content-Type: application/json');
+
 $source = preg_replace('/[^-a-z]/i', '', $_GET['src'] ?? 'league-of-legends');
 $sourceFile = $source . '.json';
 
 if(file_exists($sourceFile)){
     $heroesFile = file_get_contents($sourceFile);
     $heroes = json_decode($heroesFile);
+    
+    if($_GET['count-only']){
+        die(json_encode(count($heroes)));
+    }
 
     $filterList = [
         'lowercase' => function($name){ return strtolower($name); },
@@ -26,6 +32,5 @@ if(file_exists($sourceFile)){
         }
     }
 
-    header('Content-Type: application/json');
     die(json_encode($hero));
 }
