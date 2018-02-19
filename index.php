@@ -1,5 +1,5 @@
 <?php
-$source = preg_replace('/[^-a-z]/i', '', $_GET['src'] ?? 'marvel');
+$source = preg_replace('/[^-a-z]/i', '', $_GET['src'] ?? 'league-of-legends');
 $sourceFile = $source . '.json';
 
 if(file_exists($sourceFile)){
